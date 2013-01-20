@@ -5,11 +5,13 @@ body {
     background-color: #ddd;
     padding-left: 10px;
 
+    /*
     user-select: none;
     -o-user-select:none;
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
+    */
 
     background-image: url('../images/bg.png');
 }
@@ -27,6 +29,13 @@ h1 {
     padding-top: 14px;
 }
 
+h2 {
+    font-family: 'Rock Salt', "Arial Rounded MT Bold", arial, serif;
+    color: #5c9db4;
+    font-size: 18px;
+    text-align: center;
+}
+
 #board {
     position: relative;
     background-color: #dcd5d1;
@@ -41,6 +50,7 @@ h1 {
     );
     -moz-box-shadow:inset 1px 1px 3px #999;
     box-shadow:inset 1px 1px 3px #999;
+    overflow: hidden;
 }
 
 .board-outline {
@@ -89,7 +99,7 @@ h1 {
     top: 230px;
 }
 
-#board-doodles:hover ~ #add-status, #board-doodles:hover ~ #remove-status {
+#main:hover ~ #add-status, #main:hover ~ #remove-status {
     display: block;
 }
 
@@ -106,4 +116,40 @@ h1 {
 
 .buttons {
     padding: 5px;
+}
+
+#main {
+    width: 100%;
+    height: 100%;
+    display: table;
+    table-layout: fixed;
+    position: absolute;
+}
+
+.status {
+    display: table-cell;
+    background-image: url('/images/green-board-line.png');
+    background-repeat: repeat-y;
+}
+
+.status:first-child {
+    background-image: none;
+}
+
+.task {
+    width: 225px;
+    height: 135px;
+}
+
+.blue {
+    background-image: url('../images/blue-card.png');
+}
+
+h3 {
+    font-family: 'Covered By Your Grace',"Arial Rounded MT Bold", arial, serif;
+    font-size: 18px;
+    letter-spacing: 0px;
+    color: black;
+    text-align: center;
+    padding-top: 18px;
 }
