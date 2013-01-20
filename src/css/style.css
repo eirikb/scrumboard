@@ -128,7 +128,7 @@ h2 {
 
 .status {
     display: table-cell;
-    background-image: url('/images/green-board-line.png');
+    background-image: url('../images/green-board-line.png');
     background-repeat: repeat-y;
 }
 
