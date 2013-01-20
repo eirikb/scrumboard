@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="../src/css/style.css">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Rock+Salt">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Covered+By+Your+Grace" >
+
+        <title>Scrumboard</title>
+    </head>
+    <body>
+
+        <h1>Scrumboard</h1>
+        <small>Forked from
+            <a href="http://scrumblr.ca">scrumblr</a> 
+            by 
+            <a href="http://aliasaria.ca">aliasaria</a>
+        </small>
+
+        <div class="board-outline">
+            <div id="board">
+                <div id="board-doodles"></div>
+                <div id="main"></div>
+                <img id="marker" src="../src//images/marker.png">
+                <img id="eraser" src="../src//images/eraser.png">
+                <a id="add-status" class="button add"></a>
+                <a id="remove-status" class="button remove"></a>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <a class="button add" id="add-task"></a>
+        </div>
+
+        <script src="http://underscorejs.org/underscore-min.js"></script> 
+        <script src="http://code.jquery.com/jquery.min.js"></script> 
+        <script src="https://raw.github.com/eirikb/scrumboard/master/js/lib/jquery-ui-1.10.0.custom.min.js"></script> 
+
+        <script src="../src/js/scrumboard.js"></script> 
+        <script src="main.js"></script> 
+    </body>
+</html>
