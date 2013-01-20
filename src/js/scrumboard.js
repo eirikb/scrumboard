@@ -34,6 +34,7 @@ window.scrumboard = (function($) {
         var $p = $el.parent();
         $el.attr('contenteditable', false);
         if ($p.hasClass('ui-draggable')) $p.draggable('enable');
+        $el.trigger('edit');
     }
 
     $(function() {
@@ -59,6 +60,9 @@ window.scrumboard = (function($) {
             $status.addClass('status').data('status', status);
             $status.append($title);
             $main.append($status);
+            $title.on('edit', function() {
+                emit('edit-status', $status);
+            });
 
             $status.droppable();
         };
@@ -71,15 +75,24 @@ window.scrumboard = (function($) {
         self.addTask = function(task) {
             var $task = $('<div>');
             var $title = $('<h3>');
-            $task.addClass('task blue').css({
-                left: 30,
-                top: -30
+            var rot = -4 + (Math.random() * 8);
+            var color = (['blue','green','white','yellow'])[task.id % 4];
+            $task.addClass('task ' + color).css({
+                left: 80,
+                top: 550,
+                position: 'absolute',
+                WebkitTransform: 'rotate(' + rot + 'deg)',
+                '-moz-transform': 'rotate(' + rot + 'deg)'
             });
             $title.addClass('editable').text(task.title);
             $task.append($title);
             $task.data('task', task);
             $task.draggable();
             $('body').append($task);
+
+            $title.on('edit', function() {
+                emit('edit-task', $task);
+            });
         };
 
         self.clear = function() {
