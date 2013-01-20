@@ -144,6 +144,15 @@ h2 {
 .blue {
     background-image: url('../images/blue-card.png');
 }
+.green {
+    background-image: url('../images/green-card.png');
+}
+.white {
+    background-image: url('../images/white-card.png');
+}
+.yellow {
+    background-image: url('../images/yellow-card.png');
+}
 
 h3 {
     font-family: 'Covered By Your Grace',"Arial Rounded MT Bold", arial, serif;
