@@ -23,20 +23,26 @@ window.scrumboard = (function($) {
         }
     }
 
+    function onEdit($el) {
+        var $p = $el.parent();
+        unselect();
+        $el.attr('contenteditable', true).focus();
+        if ($p.hasClass('ui-draggable')) $p.draggable('disable');
+    }
+
+    function offEdit($el) {
+        var $p = $el.parent();
+        $el.attr('contenteditable', false);
+        if ($p.hasClass('ui-draggable')) $p.draggable('enable');
+    }
+
     $(function() {
         var $main = $('#main');
 
         $('body').on('dblclick', '.editable', function() {
-            var $t = $(this);
-            var $p = $t.parent();
-            unselect();
-            $t.attr('contenteditable', true).focus();
-            if ($p.hasClass('ui-draggable')) $p.draggable('disable');
+            onEdit($(this));
         }).on('blur', '.editable', function() {
-            var $t = $(this);
-            var $p = $t.parent();
-            $t.attr('contenteditable', false);
-            if ($p.hasClass('ui-draggable')) $p.draggable('enable');
+            offEdit($(this));
         });
 
         $main.on('drop', '.status', function(e, ui) {
