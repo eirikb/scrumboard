@@ -139,6 +139,8 @@ h2 {
 .task {
     width: 225px;
     height: 135px;
+    /* TODO: Remove !important */
+    position: absolute !important;
 }
 
 .blue {

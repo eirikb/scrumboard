@@ -17,7 +17,7 @@ $(function() {
         },
 
         addTasks: function() {
-            this.$el.find('.task').remove();
+            this.$('#tasks').empty();
             app.Tasks.forEach(this.addTask, this);
         },
 
@@ -25,7 +25,7 @@ $(function() {
             var view = new app.TaskView({
                 model: task
             });
-            this.$el.append(view.render().el);
+            this.$('#tasks').append(view.render().el);
         },
 
         createTask: function() {
