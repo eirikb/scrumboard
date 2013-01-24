@@ -70,7 +70,11 @@ $(function() {
 
         events: {
             'dblclick h2': 'edit',
-            'blur h2': 'doneedit'
+            'blur h2': 'doneedit',
+        },
+
+        initialize: function() {
+            this.listenTo(this.model, 'destroy', this.remove);
         },
 
         edit: function(e) {
