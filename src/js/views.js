@@ -1,4 +1,5 @@
 $(function() {
+    var colors = ['blue', 'white', 'yellow', 'green'];
 
     app.TaskView = Backbone.View.extend({
         template: _.template($('#task-template').html()),
@@ -12,13 +13,14 @@ $(function() {
         render: function() {
             var tpl = this.template(this.model.toJSON()).trim();
             this.setElement(tpl.trim(), true);
-            this.$el.addClass('blue').draggable();
+            this.$el.draggable();
             this.$el.css({
                 left: this.model.get('left'),
                 top: this.model.get('top')
             });
 
             this.rotate();
+            this.setColor();
             return this;
         },
 
@@ -32,6 +34,15 @@ $(function() {
             });
             this.model.save({
                 deg: deg
+            });
+        },
+
+        setColor: function() {
+            var color = this.model.get('color');
+            if (!color) color = colors[Math.floor(Math.random() * colors.length)];
+            this.$el.addClass(color);
+            this.model.save({
+                color: color
             });
         },
 
