@@ -5,24 +5,33 @@ $(function() {
 
         events: {
             'dblclick h3': 'edit',
-            'blur h3': 'doneedit'
+            'blur h3': 'doneedit',
+            'dragstop': 'dragstop'
         },
 
         render: function() {
             var tpl = this.template(this.model.toJSON()).trim();
             this.setElement(tpl.trim(), true);
             this.$el.addClass('blue').draggable();
+            this.$el.css({
+                left: this.model.get('left'),
+                top: this.model.get('top')
+            });
 
             this.rotate();
             return this;
         },
 
         rotate: function() {
-            var deg = -4 + (Math.random() * 8);
+            var deg = this.model.get('deg');
+            if (!deg) deg = -4 + (Math.random() * 8);
             var rot = 'rotate(' + deg + 'deg)';
             this.$el.css({
                 WebkitTransform: rot,
                 MozTransform: rot
+            });
+            this.model.save({
+                deg: deg
             });
         },
 
@@ -37,6 +46,11 @@ $(function() {
             this.model.save({
                 title: title
             });
+        },
+
+        dragstop: function() {
+            var pos = this.$el.position();
+            this.model.save(pos);
         }
     });
 
