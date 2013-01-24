@@ -33,6 +33,10 @@ $(function() {
 
         doneedit: function(e) {
             this.$el.draggable('enable');
+            var title = this.$('h3').text().trim();
+            this.model.save({
+                title: title
+            });
         }
     });
 
