@@ -5,6 +5,7 @@ $(function() {
         events: {
             'click #add-task': 'createTask',
             'click #add-status': 'createStatus',
+            'click #remove-status': 'removeStatus'
         },
 
         initialize: function() {
@@ -47,6 +48,10 @@ $(function() {
 
         createStatus: function() {
             var statusView = app.Statuses.create({});
+        },
+
+        removeStatus: function() {
+            app.Statuses.last().destroy();
         }
     });
 
