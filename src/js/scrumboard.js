@@ -14,6 +14,7 @@ $(function() {
             this.listenTo(app.Statuses, 'add', this.addStatus);
 
             app.Tasks.fetch();
+            app.Statuses.fetch();
         },
 
         addTasks: function() {
