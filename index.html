@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="../src/css/style.css">
+        <link rel="stylesheet" href="src/css/style.css">
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Rock+Salt">
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Covered+By+Your+Grace" >
 
         <title>Scrumboard</title>
     </head>
     <body>
-        <h1>Scrumboard</h1>
-        <small>Forked from
-            <a href="http://scrumblr.ca">scrumblr</a> 
-            by 
-            <a href="http://aliasaria.ca">aliasaria</a>
-        </small>
+        <h1>Scrumboard
+            <small>Forked from
+                <a href="http://scrumblr.ca">scrumblr</a> 
+                by 
+                <a href="http://aliasaria.ca">aliasaria</a>
+            </small>
+        </h1>
 
         <div class="board-outline">
             <div id="board">
                 <div id="board-doodles"></div>
                 <div id="main"></div>
-                <img id="marker" src="../src//images/marker.png">
-                <img id="eraser" src="../src//images/eraser.png">
+                <img id="marker" src="src/images/marker.png">
+                <img id="eraser" src="src/images/eraser.png">
                 <a id="add-status" class="button add"></a>
                 <a id="remove-status" class="button remove"></a>
             </div>
@@ -33,16 +34,17 @@
         
         <script src="http://code.jquery.com/jquery.min.js"></script> 
         <!-- jQuery UI for draggable and droppable, no CSS needed -->
-        <script src="../src/js/lib/jquery-ui-1.10.0.custom.min.js"></script> 
+        <script src="src/js/lib/jquery-ui-1.10.0.custom.min.js"></script> 
 
         <script src="http://underscorejs.org/underscore-min.js"></script> 
         <script src="http://backbonejs.org/backbone.js"></script> 
         <script src="http://backbonejs.org/examples/backbone-localstorage.js"></script> 
 
-        <script src="../src/js/models.js"></script> 
-        <script src="../src/js/collections.js"></script> 
-        <script src="../src/js/views.js"></script> 
-        <script src="../src/js/scrumboard.js"></script> 
+        <script src="src/js/models.js"></script> 
+        <script src="src/js/collections.js"></script> 
+        <script src="src/js/views/task.js"></script> 
+        <script src="src/js/views/status.js"></script> 
+        <script src="src/js/scrumboard.js"></script> 
 
         <script type="text/template" id="task-template">
             <div class="task">
