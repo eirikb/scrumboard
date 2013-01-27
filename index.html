@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <link rel="stylesheet" href="http://fortawesome.github.com/Font-Awesome/assets/css/font-awesome.min.css">
         <link rel="stylesheet" href="src/css/style.css">
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Rock+Salt">
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Covered+By+Your+Grace" >
@@ -22,14 +23,25 @@
                 <div id="main"></div>
                 <img id="marker" src="src/images/marker.png">
                 <img id="eraser" src="src/images/eraser.png">
-                <a id="add-status" class="button add"></a>
+                <a id="add-status" class="button add icon plus-sign"></a>
                 <a id="remove-status" class="button remove"></a>
             </div>
         </div>
 
-        <div class="buttons">
-            <a class="button add" id="add-task"></a>
-        </div>
+        <ul class="menu">
+            <li id="add-task">
+                <i class="icon-tasks icon-large"></i>
+                <a class="button" href="#">Add task</a>
+            </li>
+            <li id="add-status">
+                <i class="icon-tag icon-large"></i>
+                <a class="button" href="#">Add status</a>
+            </li>
+            <li id="add-assignedto">
+                <i class="icon-user icon-large"></i>
+                <a class="button" href="#">Add assigned to</a>
+            </li>
+        </ul>
         <div id="tasks"></div>
         
         <script src="http://code.jquery.com/jquery.min.js"></script> 

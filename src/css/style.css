@@ -1,9 +1,7 @@
 body {
     font-family: 'Helvetica Neue Light', arial, serif;
     font-size: 13px;
-    color: #333;
-    background-color: #ddd;
-    padding-left: 10px;
+    background-image: url('../images/bg.png');
 
     /*
     user-select: none;
@@ -12,8 +10,6 @@ body {
     -khtml-user-select: none;
     -webkit-user-select: none;
     */
-
-    background-image: url('../images/bg.png');
 }
 
 h1, small, small a {
@@ -65,9 +61,9 @@ h2 {
     left:0;
     right:0;
     margin-top: 35px;
-    margin-bottom: 20px;
+    margin-bottom: 45px;
     margin-right: 30px;
-    margin-left: 60px;
+    margin-left: 10px;
 }
 
 #board-doodles {
@@ -80,34 +76,11 @@ h2 {
 }
 
 .button {
-    display: block;
-    width: 24px;
-    height: 24px;
-    background-size: 24px 24px;
-    opacity: .15;
-}
-
-.add {
-    background-image: url('https://raw.github.com/somerandomdude/Iconic/master/raster/optimized/iconic_r0g0b0/plus_alt_24x24.png')
-}
-
-.remove {
-    background-image: url('https://raw.github.com/somerandomdude/Iconic/master/raster/optimized/iconic_r0g0b0/minus_alt_24x24.png')
-}
-
-#add-status, #remove-status {
-    position: absolute; 
-    right: 3px; 
-    top: 200px; 
-    display: none;
+    color: #5c9db4;
 }
 
 #remove-status {
     top: 230px;
-}
-
-#main:hover ~ #add-status, #main:hover ~ #remove-status {
-    display: block;
 }
 
 #marker, #eraser {
@@ -121,8 +94,17 @@ h2 {
     right: 70px;
 }
 
-.buttons {
-    padding: 5px;
+.menu {
+    list-style: none;
+    position: absolute;
+    bottom: 0px;
+    width: 400px;
+    padding-left: 0;
+}
+
+.menu li {
+    float: left;
+    margin-left: 20px;
 }
 
 #main {
