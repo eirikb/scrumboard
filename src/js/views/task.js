@@ -4,10 +4,15 @@ $(function() {
     app.TaskView = Backbone.View.extend({
         template: _.template($('#task-template').html()),
 
+        initialize: function() {
+            this.listenTo(this.model, 'destroy', this.remove);
+        },
+
         events: {
             'dblclick h3': 'edit',
             'blur h3': 'doneedit',
-            'dragstop': 'dragstop'
+            'dragstop': 'dragstop',
+            'click .remove': 'destroy'
         },
 
         render: function() {
@@ -62,6 +67,10 @@ $(function() {
         dragstop: function() {
             var pos = this.$el.position();
             this.model.save(pos);
+        },
+
+        destroy: function() {
+            this.model.destroy();
         }
     });
 });

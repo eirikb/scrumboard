@@ -153,3 +153,15 @@ h3 {
     text-align: center;
     padding-top: 18px;
 }
+
+.remove {
+    text-decoration: none;
+    position: absolute;
+    right: 10px;
+    display: none;
+    color: #b6b6b6;
+}
+
+.task:hover > .remove {
+    display: initial;
+}
