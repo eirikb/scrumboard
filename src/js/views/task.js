@@ -64,9 +64,8 @@ $(function() {
             });
         },
 
-        dragstop: function() {
-            var pos = this.$el.position();
-            this.model.save(pos);
+        dragstop: function(e, ui) {
+            this.model.save(ui.position);
         },
 
         destroy: function() {
