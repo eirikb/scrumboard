@@ -79,15 +79,11 @@ h2 {
     color: #5c9db4;
 }
 
-#marker, #eraser {
+#marker-and-eraser {
     position: absolute; 
     bottom: 0; 
     right: 200px;
     z-index: 1;
-}
-
-#eraser {
-    right: 70px;
 }
 
 .menu {
