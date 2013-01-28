@@ -5,7 +5,8 @@ $(function() {
         events: {
             'dblclick h2': 'edit',
             'blur h2': 'doneedit',
-            'click .remove': 'destroy'
+            'click .remove': 'destroy',
+            'drop': 'drop'
         },
 
         initialize: function() {
@@ -26,11 +27,21 @@ $(function() {
         render: function() {
             var tpl = this.template(this.model.toJSON()).trim();
             this.setElement(tpl.trim(), true);
+            this.$el.droppable();
             return this;
         },
 
         destroy: function() {
             this.model.destroy();
+        },
+
+        drop: function(e, ui) {
+            var pos = {
+                left: ui.offset.left - this.$el.offset().left,
+                top: ui.offset.top - this.$el.offset().top
+            };
+            ui.draggable.css(pos);
+            this.$el.append(ui.draggable);
         }
     });
 });

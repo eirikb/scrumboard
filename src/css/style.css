@@ -205,4 +205,5 @@ p {
 
 .task {
     position: absolute !important;
+    z-index: 9001;
 }
