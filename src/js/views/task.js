@@ -9,8 +9,8 @@ $(function() {
         },
 
         events: {
-            'dblclick h3': 'edit',
-            'blur h3': 'doneedit',
+            'dblclick p': 'edit',
+            'blur p': 'doneedit',
             'dragstop': 'dragstop',
             'click .remove': 'destroy'
         },
@@ -31,7 +31,7 @@ $(function() {
 
         rotate: function() {
             var deg = this.model.get('deg');
-            if (!deg) deg = -4 + (Math.random() * 8);
+            if (!deg) deg = -6 + (Math.random() * 12);
             var rot = 'rotate(' + deg + 'deg)';
             this.$el.css({
                 WebkitTransform: rot,
@@ -58,7 +58,7 @@ $(function() {
 
         doneedit: function(e) {
             this.$el.draggable('enable');
-            var title = this.$('h3').text().trim();
+            var title = this.$('p').text().trim();
             this.model.save({
                 title: title
             });

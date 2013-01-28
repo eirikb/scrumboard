@@ -5,6 +5,7 @@ $(function() {
         events: {
             'dblclick h2': 'edit',
             'blur h2': 'doneedit',
+            'click .remove': 'destroy'
         },
 
         initialize: function() {
@@ -26,6 +27,10 @@ $(function() {
             var tpl = this.template(this.model.toJSON()).trim();
             this.setElement(tpl.trim(), true);
             return this;
+        },
+
+        destroy: function() {
+            this.model.destroy();
         }
     });
 });

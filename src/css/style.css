@@ -79,10 +79,6 @@ h2 {
     color: #5c9db4;
 }
 
-#remove-status {
-    top: 230px;
-}
-
 #marker, #eraser {
     position: absolute; 
     bottom: 0; 
@@ -119,6 +115,7 @@ h2 {
     display: table-cell;
     background-image: url('../images/green-board-line.png');
     background-repeat: repeat-y;
+    position: relative;
 }
 
 .status:first-child {
@@ -126,12 +123,57 @@ h2 {
 }
 
 .task {
-    width: 225px;
-    height: 135px;
-    /* TODO: Remove !important */
     position: absolute !important;
+    width: 100%;
+    height: 100%;
+    font-family:'Covered By Your Grace', cursive;
+    font-size: 30px;
+    overflow: hidden;
+    background-image: linear-gradient(300, rgb(255, 255, 255) 33%, rgb(189, 210, 242) 100%);
+    background-image: -o-linear-gradient(300, rgb(255, 255, 255) 33%, rgb(189, 210, 242) 100%);
+    background-image: -moz-linear-gradient(300, rgb(255, 255, 255) 33%, rgb(189, 210, 242) 100%);
+    background-image: -webkit-linear-gradient(300, rgb(255, 255, 255) 33%, rgb(189, 210, 242) 100%);
+    background-image: -ms-linear-gradient(300, rgb(255, 255, 255) 33%, rgb(189, 210, 242) 100%);
+    background-image: -webkit-gradient(linear, left 300, left top, color-stop(0.33, rgb(255, 255, 255)), color-stop(1, rgb(189, 210, 242)));
 }
-
+h3 {
+    border-bottom: 1px solid #b68892;
+    min-height: 15px;
+}
+p {
+    height: 100%;
+    background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAKCAYAAAB10jRKAAAAE0lEQVQIW2NkAAJGYolJew78BwAIQAMYJVSb9AAAAABJRU5ErkJggg==') repeat;
+}
+.shadow {
+    border:1px solid #ccc;
+    position:relative;
+    width:200px;
+    height:150px;
+    background-color:#ededed;
+}
+.shadow:before, .shadow:after {
+    bottom:13px;
+    content:"";
+    position: absolute;
+    z-index: -1;
+    -ms-transform: rotate(-11deg);
+    -webkit-transform: rotate(-11deg);
+    -o-transform: rotate(-11deg);
+    -moz-transform: rotate(-11deg);
+    box-shadow: 0 15px 5px rgba(0, 0, 0, 0.2);
+    height: 50px;
+    max-width: 50%;
+    width: 50%;
+    left:3px;
+}
+.shadow:after {
+    -ms-transform: rotate(11deg);
+    -webkit-transform: rotate(11deg);
+    -o-transform: rotate(11deg);
+    -moz-transform: rotate(11deg);
+    left: auto;
+    right: 2px;
+}
 .blue {
     background-image: url('../images/blue-card.png');
 }
@@ -145,13 +187,17 @@ h2 {
     background-image: url('../images/yellow-card.png');
 }
 
-h3 {
-    font-family: 'Covered By Your Grace',"Arial Rounded MT Bold", arial, serif;
+p, h3 {
+    margin: 0;
+}
+
+p {
+    font-weight: bold;
     font-size: 18px;
     letter-spacing: 0px;
     color: black;
     text-align: center;
-    padding-top: 18px;
+    padding-top: 10px;
 }
 
 .remove {
@@ -160,8 +206,9 @@ h3 {
     right: 10px;
     display: none;
     color: #b6b6b6;
+    font-size: 16px;
 }
 
-.task:hover > .remove {
+.task:hover > .remove, .status:hover > .remove {
     display: initial;
 }
