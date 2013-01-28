@@ -1,7 +1,7 @@
 body {
     font-family: 'Helvetica Neue Light', arial, serif;
     font-size: 13px;
-    background-image: url('../images/bg.png');
+    background-image: url('../img/bg.png');
 
     /*
     user-select: none;
@@ -72,7 +72,7 @@ h2 {
     position: absolute;
     display: inline;
     opacity: 0.035;
-    background-image: url('../images/scribbles.png');
+    background-image: url('../img/scribbles.png');
 }
 
 .button {
@@ -113,7 +113,7 @@ h2 {
 
 .status {
     display: table-cell;
-    background-image: url('../images/green-board-line.png');
+    background-image: url('../img/green-board-line.png');
     background-repeat: repeat-y;
     position: relative;
 }
@@ -173,18 +173,6 @@ p {
     -moz-transform: rotate(11deg);
     left: auto;
     right: 2px;
-}
-.blue {
-    background-image: url('../images/blue-card.png');
-}
-.green {
-    background-image: url('../images/green-card.png');
-}
-.white {
-    background-image: url('../images/white-card.png');
-}
-.yellow {
-    background-image: url('../images/yellow-card.png');
 }
 
 p, h3 {
