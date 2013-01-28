@@ -4,7 +4,7 @@ $(function() {
 
     app.Task = Backbone.Model.extend({
         defaults: {
-            title: 'Double-click to edit'
+            title: 'Double-click to edit',
         }
     });
 
