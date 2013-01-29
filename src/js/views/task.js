@@ -6,6 +6,7 @@ $(function() {
 
         initialize: function() {
             this.listenTo(this.model, 'destroy', this.remove);
+            this.listenTo(this.model, 'setStatus', this.setStatus);
         },
 
         events: {
@@ -70,6 +71,13 @@ $(function() {
 
         destroy: function() {
             this.model.destroy();
+        },
+
+        setStatus: function(status, pos) {
+            this.$el.css(pos);
+            var val = pos;
+            val.status = status;
+            this.model.save(val);
         }
     });
 });

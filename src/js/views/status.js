@@ -11,6 +11,7 @@ $(function() {
 
         initialize: function() {
             this.listenTo(this.model, 'destroy', this.remove);
+            this.listenTo(this.model, 'addTask', this.addTask);
         },
 
         edit: function(e) {
@@ -36,12 +37,17 @@ $(function() {
         },
 
         drop: function(e, ui) {
+            var task = app.Tasks.get(ui.draggable.data('id'));
             var pos = {
                 left: ui.offset.left - this.$el.offset().left,
                 top: ui.offset.top - this.$el.offset().top
             };
-            ui.draggable.css(pos);
-            this.$el.append(ui.draggable);
+            task.trigger('setStatus', this.model.id, pos);
+            this.addTask(ui.draggable);
+        },
+
+        addTask: function($task) {
+            this.$el.append($task);
         }
     });
 });

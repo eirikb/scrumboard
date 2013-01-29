@@ -14,8 +14,8 @@ $(function() {
             this.listenTo(app.Statuses, 'reset', this.addStatuses);
             this.listenTo(app.Statuses, 'add', this.addStatus);
 
-            app.Tasks.fetch();
             app.Statuses.fetch();
+            app.Tasks.fetch();
         },
 
         addTasks: function() {
@@ -24,14 +24,20 @@ $(function() {
         },
 
         addTask: function(task) {
+            // Force an ID
+            task.save()
             var view = new app.TaskView({
                 model: task
             });
-            this.$('#tasks').append(view.render().el);
+            var $view = view.render().el;
+
+            var status = app.Statuses.get(task.get('status'));
+            if (status) status.trigger('addTask', $view);
+            else this.$('#tasks').append($view);
         },
 
         createTask: function() {
-            var taskView = app.Tasks.create({});
+            var taskView = app.Tasks.create();
         },
 
         addStatuses: function() {
@@ -47,7 +53,7 @@ $(function() {
         },
 
         createStatus: function() {
-            var statusView = app.Statuses.create({});
+            var statusView = app.Statuses.create();
         },
 
         removeStatus: function() {

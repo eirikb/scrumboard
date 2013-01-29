@@ -51,9 +51,10 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.3/underscore-min.js"></script> 
         <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.10/backbone-min.js"></script> 
         <!--
+        Wrong version, hosting locally for now
         <script src="//cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.0/backbone.localStorage-min.js"></script> 
         -->
-        <script src="http://backbonejs.org/examples/backbone-localstorage.js"></script> 
+        <script src="src/js/lib/backbone-localstorage.js"></script> 
 
         <script src="src/js/models.js"></script> 
         <script src="src/js/collections.js"></script> 
@@ -62,7 +63,7 @@
         <script src="src/js/scrumboard.js"></script> 
 
         <script type="text/template" id="task-template">
-            <div class="task shadow">
+            <div class="task shadow" data-id="<%= id %>">
                 <div class="task-body">
                     <a href="#" class="remove">
                         <i class="icon-remove icon-large"></i>
