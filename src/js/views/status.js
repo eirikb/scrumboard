@@ -42,8 +42,8 @@ $(function() {
                 left: ui.offset.left - this.$el.offset().left,
                 top: ui.offset.top - this.$el.offset().top
             };
-            task.trigger('setStatus', this.model.id, pos);
             this.addTask(ui.draggable);
+            task.trigger('setStatus', this.model.id, pos);
         },
 
         addTask: function($task) {

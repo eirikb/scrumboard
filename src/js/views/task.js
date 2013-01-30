@@ -12,7 +12,6 @@ $(function() {
         events: {
             'dblclick p': 'edit',
             'blur p': 'doneedit',
-            'dragstop': 'dragstop',
             'click .remove': 'destroy'
         },
 
@@ -21,8 +20,8 @@ $(function() {
             this.setElement(tpl.trim(), true);
             this.$el.draggable();
             this.$el.css({
-                left: this.model.get('left'),
-                top: this.model.get('top')
+                left: this.model.get('left') + '%',
+                top: this.model.get('top') + '%'
             });
 
             this.rotate();
@@ -65,16 +64,27 @@ $(function() {
             });
         },
 
-        dragstop: function(e, ui) {
-            this.model.save(ui.position);
-        },
-
         destroy: function() {
             this.model.destroy();
         },
 
+        setPos: function(pos) {
+            var $parent = this.$el.parent();
+            var width = $parent.width();
+            var height = $parent.height();
+
+            pos.left *= 100 / width;
+            pos.top *= 100 / height;
+
+            this.$el.css({
+                left: pos.left + '%',
+                top: pos.top + '%'
+            });
+            this.model.save(pos);
+        },
+
         setStatus: function(status, pos) {
-            this.$el.css(pos);
+            this.setPos(pos);
             var val = pos;
             val.status = status;
             this.model.save(val);
