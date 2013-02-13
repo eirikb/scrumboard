@@ -124,12 +124,12 @@ h2 {
     font-family:'Covered By Your Grace', cursive;
     font-size: 30px;
     overflow: hidden;
-    background-image: linear-gradient(300, rgb(255, 255, 255) 33%, rgb(189, 210, 242) 100%);
     background-image: -o-linear-gradient(300, rgb(255, 255, 255) 33%, rgb(189, 210, 242) 100%);
     background-image: -moz-linear-gradient(300, rgb(255, 255, 255) 33%, rgb(189, 210, 242) 100%);
     background-image: -webkit-linear-gradient(300, rgb(255, 255, 255) 33%, rgb(189, 210, 242) 100%);
     background-image: -ms-linear-gradient(300, rgb(255, 255, 255) 33%, rgb(189, 210, 242) 100%);
     background-image: -webkit-gradient(linear, left 300, left top, color-stop(0.33, rgb(255, 255, 255)), color-stop(1, rgb(189, 210, 242)));
+    background-image: linear-gradient(to top, rgb(255, 255, 255) 33%, rgb(189, 210, 242) 100%);
 }
 h3 {
     border-bottom: 1px solid #b68892;
