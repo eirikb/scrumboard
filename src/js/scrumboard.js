@@ -25,9 +25,10 @@ $(function() {
 
         addTask: function(task) {
             // Force an ID
-            task.save()
+            //task.save()
             var view = new app.TaskView({
-                model: task
+                model: task,
+                status: 'wat'
             });
             var $view = view.render().el;
 
