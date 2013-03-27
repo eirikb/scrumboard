@@ -18,14 +18,12 @@ $(function() {
             app.Tasks.fetch();
         },
 
-        addTasks: function() {
+        addTasks: function () {
             this.$('#tasks').empty();
             app.Tasks.forEach(this.addTask, this);
         },
 
-        addTask: function(task) {
-            // Force an ID
-            //task.save()
+        addTask: function (task) {
             var view = new app.TaskView({
                 model: task,
                 status: 'wat'
@@ -38,7 +36,11 @@ $(function() {
         },
 
         createTask: function() {
-            var taskView = app.Tasks.create();
+            var lastTask = app.Tasks.last();
+            var id = lastTask ? lastTask.id + 1 : 1;
+            app.Tasks.add({
+                id: id
+            });
         },
 
         addStatuses: function() {
@@ -54,7 +56,7 @@ $(function() {
         },
 
         createStatus: function() {
-            var statusView = app.Statuses.create();
+            app.Statuses.add({});
         },
 
         removeStatus: function() {
