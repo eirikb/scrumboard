@@ -80,17 +80,16 @@ $(function() {
                 view = new app.UserView({
                     model: user
                 });
-                $view = view.render().el;
-                task.trigger('addUser', $view);
-            } else {
-                this.$('#users').append($view);
+                task.trigger('addUser', view.render().$el);
             }
+            this.$('#users').append($view);
         },
 
         createUser: function() {
             var lastUser = app.Users.last();
             var id = lastUser ? lastUser.id + 1 : 1;
-            app.Tasks.create({ id: id });
+            var title = prompt('User name:');
+            app.Users.create({ id: id, title: title });
         }
     });
 

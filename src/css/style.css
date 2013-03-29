@@ -15,7 +15,7 @@ body {
 h1, small, small a {
     color: #b6b6b6;
     letter-spacing: +1px;
-    font-family:  "Helvetica Neue Light", "HelveticaNeue-Light", 'Helvetica Neue', arial, serif;
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", 'Helvetica Neue', arial, serif;
 }
 
 h1 {
@@ -36,14 +36,14 @@ h2 {
 
     height: 100%;
     background-image: -webkit-gradient(
-        linear,
-        left top,
-        right bottom,
-        color-stop(0.49, rgb(214,210,206)),
-        color-stop(0.84, rgb(196,191,182))
-    );
-    -moz-box-shadow:inset 1px 1px 3px #999;
-    box-shadow:inset 1px 1px 3px #999;
+                                      linear,
+                                      left top,
+                                      right bottom,
+                                      color-stop(0.49, rgb(214, 210, 206)),
+                                      color-stop(0.84, rgb(196, 191, 182))
+);
+    -moz-box-shadow: inset 1px 1px 3px #999;
+    box-shadow: inset 1px 1px 3px #999;
 }
 
 .board-outline {
@@ -53,12 +53,12 @@ h2 {
     -moz-box-shadow: 1px 3px 2px #999;
     box-shadow: 1px 3px 2px #999;
 
-    position:absolute;
-    height:auto;
-    bottom:0;
-    top:0;
-    left:0;
-    right:0;
+    position: absolute;
+    height: auto;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
     margin-top: 65px;
     margin-bottom: 15px;
     margin-right: 15px;
@@ -74,13 +74,11 @@ h2 {
     background-image: url('../img/scribbles.png');
 }
 
-.button {
-    color: #5c9db4;
-}
+.button { color: #5c9db4; }
 
 #marker-and-eraser {
-    position: absolute; 
-    bottom: 0; 
+    position: absolute;
+    bottom: 0;
     right: 200px;
     z-index: 1;
 }
@@ -113,15 +111,13 @@ h2 {
     position: relative;
 }
 
-.status:first-child {
-    background-image: none;
-}
+.status:first-child { background-image: none; }
 
 .task-body {
     position: absolute !important;
     width: 100%;
     height: 100%;
-    font-family:'Covered By Your Grace', cursive;
+    font-family: 'Covered By Your Grace', cursive;
     font-size: 30px;
     overflow: hidden;
     background-image: -o-linear-gradient(300, rgb(255, 255, 255) 33%, rgb(189, 210, 242) 100%);
@@ -131,24 +127,28 @@ h2 {
     background-image: -webkit-gradient(linear, left 300, left top, color-stop(0.33, rgb(255, 255, 255)), color-stop(1, rgb(189, 210, 242)));
     background-image: linear-gradient(to top, rgb(255, 255, 255) 33%, rgb(189, 210, 242) 100%);
 }
+
 h3 {
     border-bottom: 1px solid #b68892;
     min-height: 15px;
 }
+
 p {
     height: 100%;
-    background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAKCAYAAAB10jRKAAAAE0lEQVQIW2NkAAJGYolJew78BwAIQAMYJVSb9AAAAABJRU5ErkJggg==') repeat;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAKCAYAAAB10jRKAAAAE0lEQVQIW2NkAAJGYolJew78BwAIQAMYJVSb9AAAAABJRU5ErkJggg==') repeat;
 }
+
 .shadow {
-    border:1px solid #ccc;
-    position:relative;
-    width:200px;
-    height:150px;
-    background-color:#ededed;
+    border: 1px solid #ccc;
+    position: relative;
+    width: 200px;
+    height: 150px;
+    background-color: #ededed;
 }
+
 .shadow:before, .shadow:after {
-    bottom:13px;
-    content:"";
+    bottom: 13px;
+    content: "";
     position: absolute;
     z-index: -1;
     -ms-transform: rotate(-11deg);
@@ -159,8 +159,9 @@ p {
     height: 50px;
     max-width: 50%;
     width: 50%;
-    left:3px;
+    left: 3px;
 }
+
 .shadow:after {
     -ms-transform: rotate(11deg);
     -webkit-transform: rotate(11deg);
@@ -170,9 +171,7 @@ p {
     right: 2px;
 }
 
-p, h3 {
-    margin: 0;
-}
+p, h3 { margin: 0; }
 
 p {
     font-weight: bold;
@@ -192,9 +191,7 @@ p {
     font-size: 16px;
 }
 
-.task-body:hover > .remove, .status:hover > .remove {
-    display: initial;
-}
+.task-body:hover > .remove, .status:hover > .remove, .user:hover > .remove { display: initial; }
 
 #tasks {
     position: absolute;
@@ -221,4 +218,15 @@ p {
     margin: 5px;
     z-index: 9002;
     list-style: none;
+    position: absolute !important;
+}
+
+.user.clone {
+    position: relative !important;
+}
+
+.user .remove {
+    right: 0;
+    top: -10px;
+    font-size: 10px;
 }
