@@ -32,8 +32,8 @@
             </li>
         </ul>
 
-        <div id="users">
-        </div>
+        <ul id="users">
+        </ul>
 
         <div class="board-outline">
             <div id="board">
@@ -87,12 +87,18 @@
             </div>
         </script>
 
+        <script type="text/template" id="user-list-template">
+            <li class="user clone" data-id="<%= id %>">
+                <span title="<%= title %>"><%= initials %></span>
+            </div>
+        </script>
+
         <script type="text/template" id="user-template">
-            <div class="user">
+            <div class="user" data-id="<%= id %>">
                 <a href="#" class="remove">
                     <i class="icon-remove icon-large"></i>
                 </a>
-                <span><%= initials %></span>
+                <span title="<%= title %>"><%= initials %></span>
             </div>
         </script>
     </body>

@@ -7,12 +7,14 @@ $(function() {
         initialize: function() {
             this.listenTo(this.model, 'destroy', this.remove);
             this.listenTo(this.model, 'setStatus', this.setStatus);
+            this.listenTo(this.model, 'addUser', this.addUser);
         },
 
         events: {
             'dblclick p': 'edit',
             'blur p': 'doneedit',
-            'click .remove': 'destroy'
+            'click .remove': 'destroy',
+            'drop': 'drop'
         },
 
         render: function() {
@@ -22,6 +24,9 @@ $(function() {
             this.$el.css({
                 left: this.model.get('left') + '%',
                 top: this.model.get('top') + '%'
+            });
+            this.$el.droppable({
+                accept: '.user'
             });
 
             this.rotate();
@@ -56,7 +61,7 @@ $(function() {
             this.$el.draggable('disable');
         },
 
-        doneedit: function(e) {
+        doneedit: function() {
             this.$el.draggable('enable');
             var title = this.$('p').text().trim();
             this.model.save({
@@ -88,6 +93,29 @@ $(function() {
             var val = pos;
             val.status = status;
             this.model.save(val);
+        },
+
+        drop: function(e, ui) {
+            var $user = ui.draggable;
+            var user = app.Users.get($user.data('id'));
+            var pos = {
+                left: ui.offset.left - this.$el.offset().left,
+                top: ui.offset.top - this.$el.offset().top
+            };
+
+            if ($user.hasClass('clone')) {
+                var userView = new app.UserView({
+                    model: user
+                });
+                $user = userView.render().$el;
+            }
+
+            this.addUser($user);
+            user.trigger('setTask', this.model.id, pos);
+        },
+
+        addUser: function($user) {
+            this.$el.append($user);
         }
     });
 });

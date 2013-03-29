@@ -70,18 +70,27 @@ $(function() {
         },
 
         addUser: function(user) {
-            var view = new app.UserView({
+            var view = new app.UserListView({
                 model: user
             });
             var $view = view.render().el;
 
             var task = app.Tasks.get(user.get('task'));
-            if (task) task.trigger('addUser', $view);
-            else this.$('#users').append($view);
+            if (task) {
+                view = new app.UserView({
+                    model: user
+                });
+                $view = view.render().el;
+                task.trigger('addUser', $view);
+            } else {
+                this.$('#users').append($view);
+            }
         },
-        
+
         createUser: function() {
-            app.Users.create({});
+            var lastUser = app.Users.last();
+            var id = lastUser ? lastUser.id + 1 : 1;
+            app.Tasks.create({ id: id });
         }
     });
 

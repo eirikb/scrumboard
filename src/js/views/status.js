@@ -18,7 +18,7 @@ $(function() {
             $(e.target).attr('contenteditable', true).focus();
         },
 
-        doneedit: function(e) {
+        doneedit: function() {
             var title = this.$('h2').text().trim();
             this.model.save({
                 title: title
@@ -28,7 +28,9 @@ $(function() {
         render: function() {
             var tpl = this.template(this.model.toJSON()).trim();
             this.setElement(tpl.trim(), true);
-            this.$el.droppable();
+            this.$el.droppable({
+                accept: '.task'
+            });
             return this;
         },
 
@@ -37,6 +39,8 @@ $(function() {
         },
 
         drop: function(e, ui) {
+            if (!ui.draggable.hasClass('task')) return;
+            
             var task = app.Tasks.get(ui.draggable.data('id'));
             var pos = {
                 left: ui.offset.left - this.$el.offset().left,
