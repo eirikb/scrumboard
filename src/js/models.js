@@ -21,4 +21,22 @@ $(function() {
             if (this.get('status') === status.id) this.destroy();
         }
     });
+
+    app.User = Backbone.Model.extend({
+        defaults: {
+            title: 'No Name'
+        },
+
+        initialize: function() {
+            this.on('change:title', this.setInitials);
+            this.setInitials();
+        },
+
+        setInitials: function() {
+            var initials = _.map(this.get('title').split(' '), function(part) {
+                return ('' + part).slice(0, 1).toUpperCase();
+            }).join('');
+            this.set('initials', initials);
+        }
+    });
 });

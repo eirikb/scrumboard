@@ -206,3 +206,17 @@ p {
     position: absolute !important;
     z-index: 9001;
 }
+
+#users {
+    margin-left: 400px;
+    margin-top: -30px;
+}
+
+.user {
+    font-family: 'Rock Salt', "Arial Rounded MT Bold", arial, serif;
+    font-weight: bold;
+    float: left;
+    background-color: lightblue;
+    padding: 5px;
+    margin: 5px;
+}

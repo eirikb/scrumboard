@@ -26,11 +26,14 @@
                 <i class="icon-tag icon-large"></i>
                 <a class="button" href="#">Add status</a>
             </li>
-            <li id="add-assignedto">
+            <li id="add-user">
                 <i class="icon-user icon-large"></i>
                 <a class="button" href="#">Add assigned to</a>
             </li>
         </ul>
+
+        <div id="users">
+        </div>
 
         <div class="board-outline">
             <div id="board">
@@ -60,6 +63,7 @@
         <script src="src/js/collections.js"></script> 
         <script src="src/js/views/task.js"></script> 
         <script src="src/js/views/status.js"></script> 
+        <script src="src/js/views/user.js"></script> 
         <script src="src/js/scrumboard.js"></script> 
 
         <script type="text/template" id="task-template">
@@ -80,6 +84,15 @@
                     <i class="icon-remove icon-large"></i>
                 </a>
                 <h2><%= title %></h2>
+            </div>
+        </script>
+
+        <script type="text/template" id="user-template">
+            <div class="user">
+                <a href="#" class="remove">
+                    <i class="icon-remove icon-large"></i>
+                </a>
+                <span><%= initials %></span>
             </div>
         </script>
     </body>

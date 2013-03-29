@@ -5,7 +5,8 @@ $(function() {
         events: {
             'click #add-task': 'createTask',
             'click #add-status': 'createStatus',
-            'click #remove-status': 'removeStatus'
+            'click #remove-status': 'removeStatus',
+            'click #add-user': 'createUser'
         },
 
         initialize: function() {
@@ -13,9 +14,12 @@ $(function() {
             this.listenTo(app.Tasks, 'add', this.addTask);
             this.listenTo(app.Statuses, 'reset', this.addStatuses);
             this.listenTo(app.Statuses, 'add', this.addStatus);
+            this.listenTo(app.Users, 'reset', this.addUsers);
+            this.listenTo(app.Users, 'add', this.addUser);
 
             app.Statuses.fetch();
             app.Tasks.fetch();
+            app.Users.fetch();
         },
 
         addTasks: function() {
@@ -58,9 +62,30 @@ $(function() {
 
         removeStatus: function() {
             app.Statuses.last().destroy();
+        },
+
+        addUsers: function() {
+            this.$('#users').empty();
+            app.Users.forEach(this.addUser, this);
+        },
+
+        addUser: function(user) {
+            var view = new app.UserView({
+                model: user
+            });
+            var $view = view.render().el;
+
+            var task = app.Tasks.get(user.get('task'));
+            if (task) task.trigger('addUser', $view);
+            else this.$('#users').append($view);
+        },
+        
+        createUser: function() {
+            app.Users.create({});
         }
     });
 
+    app.Users = new app.UserList();
     app.Tasks = new app.TaskList();
     app.Statuses = new app.StatusList();
     new AppView();

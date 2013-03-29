@@ -9,4 +9,9 @@ $(function() {
         model: app.Status,
         localStorage: new Backbone.LocalStorage('Statuses')
     });
+
+    app.UserList = Backbone.Collection.extend({
+        model: app.User,
+        localStorage: new Backbone.LocalStorage('Users')
+    });
 });
