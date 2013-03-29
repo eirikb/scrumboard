@@ -2,16 +2,7 @@ var app = {};
 
 $(function() {
 
-    app.Status = Backbone.RelationalModel.extend({
-        relations: [{
-            type: Backbone.HasMany,
-            key: 'tasks',
-            relatedModel: 'app.Task',
-            collectionType: 'app.TaskList',
-            reverseRelation: {
-                key: 'status'
-            }
-        }],
+    app.Status = Backbone.Model.extend({
         defaults: {
             title: 'Double-click to edit'
         }
@@ -31,4 +22,3 @@ $(function() {
         }
     });
 });
-
