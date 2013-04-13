@@ -8,6 +8,7 @@ $(function() {
             this.listenTo(this.model, 'destroy', this.remove);
             this.listenTo(this.model, 'setStatus', this.setStatus);
             this.listenTo(this.model, 'addUser', this.addUser);
+            this.listenTo(this.model, 'change', this.change);
         },
 
         events: {
@@ -15,6 +16,14 @@ $(function() {
             'blur p': 'doneedit',
             'click .remove': 'destroy',
             'drop': 'drop'
+        },
+
+        change: function(model) {
+            var changed = _.keys(model.changed);
+            if (_.contains(changed, 'changed')) return;
+
+            model.set('changed', changed);
+            model.save();
         },
 
         render: function() {
@@ -42,18 +51,14 @@ $(function() {
                 WebkitTransform: rot,
                 MozTransform: rot
             });
-            this.model.save({
-                deg: deg
-            });
+            this.model.set('deg', deg);
         },
 
         setColor: function() {
             var color = this.model.get('color');
             if (!color) color = colors[Math.floor(Math.random() * colors.length)];
             this.$el.addClass(color);
-            this.model.save({
-                color: color
-            });
+            this.model.set('color', color);
         },
 
         edit: function(e) {
@@ -64,9 +69,7 @@ $(function() {
         doneedit: function() {
             this.$el.draggable('enable');
             var title = this.$('p').text().trim();
-            this.model.save({
-                title: title
-            });
+            this.model.set('title', title);
         },
 
         destroy: function() {
@@ -85,14 +88,14 @@ $(function() {
                 left: pos.left + '%',
                 top: pos.top + '%'
             });
-            this.model.save(pos);
+            this.model.set(pos);
         },
 
         setStatus: function(status, pos) {
             this.setPos(pos);
             var val = pos;
             val.status = status;
-            this.model.save(val);
+            this.model.set(val);
         },
 
         drop: function(e, ui) {
