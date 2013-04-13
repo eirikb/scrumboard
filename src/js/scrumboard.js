@@ -1,3 +1,8 @@
+
+app.Users = new app.UserList();
+app.Tasks = new app.TaskList();
+app.Statuses = new app.StatusList();
+
 $(function() {
 
     var AppView = Backbone.View.extend({
@@ -92,9 +97,5 @@ $(function() {
             app.Users.create({ id: id, title: title });
         }
     });
-
-    app.Users = new app.UserList();
-    app.Tasks = new app.TaskList();
-    app.Statuses = new app.StatusList();
     new AppView();
 });
