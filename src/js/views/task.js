@@ -1,124 +1,152 @@
 $(function() {
-    var colors = ['blue', 'white', 'yellow', 'green'];
+  var colors = ['blue', 'white', 'yellow', 'green'];
 
-    app.TaskView = Backbone.View.extend({
-        template: _.template($('#task-template').html()),
+  app.TaskCollectionView = Backbone.View.extend({
+    el: '#tasks',
 
-        initialize: function() {
-            this.listenTo(this.model, 'destroy', this.remove);
-            this.listenTo(this.model, 'setStatus', this.setStatus);
-            this.listenTo(this.model, 'addUser', this.addUser);
-            this.listenTo(this.model, 'change', this.change);
-        },
+    initialize: function() {
+      this.listenTo(this.collection, 'reset', this.addTasks);
+      this.listenTo(this.collection, 'add', this.addTask);
 
-        events: {
-            'dblclick p': 'edit',
-            'blur p': 'doneedit',
-            'click .remove': 'destroy',
-            'drop': 'drop'
-        },
+      this.collection.fetch();
+    },
 
-        change: function(model) {
-            var changed = _.keys(model.changed);
-            if (_.contains(changed, 'changed')) return;
+    addTasks: function() {
+      this.$el.empty();
+      app.Tasks.forEach(this.addTask, this);
+    },
 
-            model.set('changed', changed);
-            model.save();
-        },
+    addTask: function(task) {
+      var view = new app.TaskView({
+        model: task
+      });
+      var $view = view.render().el;
 
-        render: function() {
-            var tpl = this.template(this.model.toJSON()).trim();
-            this.setElement(tpl.trim(), true);
-            this.$el.draggable();
-            this.$el.css({
-                left: this.model.get('left') + '%',
-                top: this.model.get('top') + '%'
-            });
-            this.$el.droppable({
-                accept: '.user'
-            });
+      var status = app.Statuses.get(task.get('status'));
+      if (status) status.trigger('addTask', $view);
+      else this.$el.append($view);
+    },
 
-            this.rotate();
-            this.setColor();
-            return this;
-        },
+  });
 
-        rotate: function() {
-            var deg = this.model.get('deg');
-            if (!deg) deg = -6 + (Math.random() * 12);
-            var rot = 'rotate(' + deg + 'deg)';
-            this.$el.css({
-                WebkitTransform: rot,
-                MozTransform: rot
-            });
-            this.model.set('deg', deg);
-        },
+  app.TaskView = Backbone.View.extend({
+    template: _.template($('#task-template').html()),
 
-        setColor: function() {
-            var color = this.model.get('color');
-            if (!color) color = colors[Math.floor(Math.random() * colors.length)];
-            this.$el.addClass(color);
-            this.model.set('color', color);
-        },
+    initialize: function() {
+      this.listenTo(this.model, 'destroy', this.remove);
+      this.listenTo(this.model, 'setStatus', this.setStatus);
+      this.listenTo(this.model, 'addUser', this.addUser);
+      this.listenTo(this.model, 'change', this.change);
+    },
 
-        edit: function(e) {
-            $(e.target).attr('contenteditable', true).focus();
-            this.$el.draggable('disable');
-        },
+    events: {
+      'dblclick p': 'edit',
+      'blur p': 'doneedit',
+      'click .remove': 'destroy',
+      'drop': 'drop'
+    },
 
-        doneedit: function() {
-            this.$el.draggable('enable');
-            var title = this.$('p').text().trim();
-            this.model.set('title', title);
-        },
+    change: function(model) {
+      var changed = _.keys(model.changed);
+      if (_.contains(changed, 'changed')) return;
 
-        destroy: function() {
-            this.model.destroy();
-        },
+      model.set('changed', changed);
+      model.save();
+    },
 
-        setPos: function(pos) {
-            var $parent = this.$el.parent();
-            var width = $parent.width();
-            var height = $parent.height();
+    render: function() {
+      var tpl = this.template(this.model.toJSON()).trim();
+      this.setElement(tpl.trim(), true);
+      this.$el.draggable();
+      this.$el.css({
+        left: this.model.get('left') + '%',
+        top: this.model.get('top') + '%'
+      });
+      this.$el.droppable({
+        accept: '.user'
+      });
 
-            pos.left *= 100 / width;
-            pos.top *= 100 / height;
+      this.rotate();
+      this.setColor();
+      return this;
+    },
 
-            this.$el.css({
-                left: pos.left + '%',
-                top: pos.top + '%'
-            });
-            this.model.set(pos);
-        },
+    rotate: function() {
+      var deg = this.model.get('deg');
+      if (!deg) deg = -6 + (Math.random() * 12);
+      var rot = 'rotate(' + deg + 'deg)';
+      this.$el.css({
+        WebkitTransform: rot,
+        MozTransform: rot
+      });
+      this.model.set('deg', deg);
+    },
 
-        setStatus: function(status, pos) {
-            this.setPos(pos);
-            var val = pos;
-            val.status = status;
-            this.model.set(val);
-        },
+    setColor: function() {
+      var color = this.model.get('color');
+      if (!color) color = colors[Math.floor(Math.random() * colors.length)];
+      this.$el.addClass(color);
+      this.model.set('color', color);
+    },
 
-        drop: function(e, ui) {
-            var $user = ui.draggable;
-            var user = app.Users.get($user.data('id'));
-            var pos = {
-                left: ui.offset.left - this.$el.offset().left,
-                top: ui.offset.top - this.$el.offset().top
-            };
+    edit: function(e) {
+      $(e.target).attr('contenteditable', true).focus();
+      this.$el.draggable('disable');
+    },
 
-            if ($user.hasClass('clone')) {
-                var userView = new app.UserView({
-                    model: user
-                });
-                $user = userView.render().$el;
-            }
+    doneedit: function() {
+      this.$el.draggable('enable');
+      var title = this.$('p').text().trim();
+      this.model.set('title', title);
+    },
 
-            this.addUser($user);
-            user.trigger('setTask', this.model.id, pos);
-        },
+    destroy: function() {
+      this.model.destroy();
+    },
 
-        addUser: function($user) {
-            this.$el.append($user);
-        }
-    });
+    setPos: function(pos) {
+      var $parent = this.$el.parent();
+      var width = $parent.width();
+      var height = $parent.height();
+
+      pos.left *= 100 / width;
+      pos.top *= 100 / height;
+
+      this.$el.css({
+        left: pos.left + '%',
+        top: pos.top + '%'
+      });
+      this.model.set(pos);
+    },
+
+    setStatus: function(status, pos) {
+      this.setPos(pos);
+      var val = pos;
+      val.status = status;
+      this.model.set(val);
+    },
+
+    drop: function(e, ui) {
+      var $user = ui.draggable;
+      var user = app.Users.get($user.data('id'));
+      var pos = {
+        left: ui.offset.left - this.$el.offset().left,
+        top: ui.offset.top - this.$el.offset().top
+      };
+
+      if ($user.hasClass('clone')) {
+        var userView = new app.UserView({
+          model: user
+        });
+        $user = userView.render().$el;
+      }
+
+      this.addUser($user);
+      user.trigger('setTask', this.model.id, pos);
+    },
+
+    addUser: function($user) {
+      this.$el.append($user);
+    }
+  });
 });
