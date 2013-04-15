@@ -36,7 +36,7 @@ $(function() {
       this.listenTo(this.model, 'destroy', this.remove);
       this.listenTo(this.model, 'setStatus', this.setStatus);
       this.listenTo(this.model, 'addUser', this.addUser);
-      this.listenTo(this.model, 'change', this.change);
+      //this.listenTo(this.model, 'change', this.change);
     },
 
     events: {
@@ -133,16 +133,9 @@ $(function() {
         left: ui.offset.left - this.$el.offset().left,
         top: ui.offset.top - this.$el.offset().top
       };
+      user.set(pos);
 
-      if ($user.hasClass('clone')) {
-        var userView = new app.UserView({
-          model: user
-        });
-        $user = userView.render().$el;
-      }
-
-      this.addUser($user);
-      user.trigger('setTask', this.model.id, pos);
+      this.model.get('users').add(user);
     },
 
     addUser: function($user) {

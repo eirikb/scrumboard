@@ -1,12 +1,12 @@
 var app = {};
 
-app.Status = Backbone.Model.extend({
+app.Status = Backbone.RelationalModel.extend({
   defaults: {
     title: 'Double-click to edit'
   }
 });
 
-app.Task = Backbone.Model.extend({
+app.Task = Backbone.RelationalModel.extend({
   relations: [{
     type: Backbone.HasOne,
     key: 'status',
@@ -15,7 +15,7 @@ app.Task = Backbone.Model.extend({
     type: Backbone.HasMany,
     key: 'users',
     relatedModel: 'app.User',
-    collectionType: 'app.StatusList'
+    collectionType: 'app.UserList'
   }],
 
   defaults: {
@@ -31,7 +31,7 @@ app.Task = Backbone.Model.extend({
   }
 });
 
-app.User = Backbone.Model.extend({
+app.User = Backbone.RelationalModel.extend({
   defaults: {
     title: 'No Name'
   },
